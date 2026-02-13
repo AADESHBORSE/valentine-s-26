@@ -312,10 +312,11 @@
             </div>
             
             <p class="question">
-                will you be my valentine? 🥺
+                will you be my valentine? 🥺 <br>
+                pretty please???
             </p>
 
-    
+        
             
             <div class="buttons">
                 <button class="yes-btn" onclick="handleYes()">
@@ -330,11 +331,14 @@
         <div id="success-screen" class="success-screen">
             <h2>omg YES!! 🎉</h2>
             <img src="./yippee-cat-kitty.gif" alt="happy cat" class="celebration-cat">
-            <p style="font-size: 20px; margin-top: 20px;">this is gonna be the best valentine's day ever 😭💕</p>
-            <p style="font-size: 18px; color: #666;">i'm so happy you said yes!</p>
+            <p style="font-size: 20px; margin-top: 20px;">Lessssgoooooooo yayyyyy  😭💕</p>
+            <p style="font-size: 18px; color: #666;">nueheheheheheheh</p>
             <div class="email-box" id="emailStatus">
                 <span class="thinking">⏳ setting up our date...</span>
             </div>
+            <button class="yes-btn" onclick="goBack()" style="margin-top: 25px;">
+                ← go back
+            </button>
         </div>
     </div>
 
@@ -343,7 +347,7 @@
         // UPDATE YOUR INFO HERE!!
         const CONFIG = {
             yourEmail: 'aadeshdborse@gmail.com',
-            herEmail: 'megquad24@gmail.com',
+            herEmail: 'aaadeshdborse@gmail.com',
             yourName: 'Aadesh',
             herName: 'Megi'
         };
@@ -379,7 +383,7 @@
         document.addEventListener('mousemove', moveAwayFromCursor);
 
         function handleNo() {
-            window.location.href = './sadcar';
+            window.location.href = './sadcar.gif';
         }
 
         function handleYes() {
@@ -388,6 +392,16 @@
             
             throwConfetti();
             setupCalendar();
+        }
+
+        function goBack() {
+            document.getElementById('success-screen').style.display = 'none';
+            document.getElementById('question-screen').style.display = 'block';
+            
+            // Reset the no button position
+            const noBtn = document.getElementById('noBtn');
+            noBtn.style.left = '';
+            noBtn.style.top = '';
         }
 
         function throwConfetti() {
@@ -432,21 +446,6 @@
                 `;
             }, 1800);
         }
-
-        // Different cat pics
-        const cats = [
-            'https://i.imgur.com/QsZQBuO.jpg',
-            'https://i.imgur.com/Px0fNlr.jpg',
-            'https://i.imgur.com/bDnPcxV.jpg'
-        ];
-        let catIndex = 0;
-        
-        setInterval(() => {
-            if (document.getElementById('question-screen').style.display !== 'none') {
-                catIndex = (catIndex + 1) % cats.length;
-                document.getElementById('catMeme').src = cats[catIndex];
-            }
-        }, 5000);
     </script>
 </body>
 </html>
