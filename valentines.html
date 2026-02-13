@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for u 🐈</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            min-height: 100vh;
+            background: #ffe6f0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,182,193,.1) 35px, rgba(255,182,193,.1) 70px);
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Doodle decorations */
+        .doodle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .doodle-heart {
+            position: absolute;
+            font-size: 28px;
+            animation: float-wonky 8s ease-in-out infinite;
+        }
+
+        @keyframes float-wonky {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(-5deg);
+            }
+            33% { 
+                transform: translate(10px, -15px) rotate(5deg);
+            }
+            66% { 
+                transform: translate(-8px, -8px) rotate(-3deg);
+            }
+        }
+
+        .container {
+            background: white;
+            max-width: 520px;
+            margin: 40px auto;
+            padding: 45px 35px;
+            border: 4px solid #ff69b4;
+            border-radius: 8px;
+            box-shadow: 
+                8px 8px 0 rgba(255,105,180,0.2),
+                -2px -2px 0 rgba(255,182,193,0.3);
+            position: relative;
+            transform: rotate(-0.5deg);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 60px;
+            height: 25px;
+            background: #ffd700;
+            opacity: 0.6;
+            border-radius: 2px;
+            transform: rotate(-2deg);
+            border: 2px solid #ffb900;
+        }
+
+        h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 42px;
+            color: #d63384;
+            margin-bottom: 25px;
+            text-align: center;
+            transform: rotate(-1deg);
+            text-decoration: underline wavy #ff69b4;
+            text-decoration-thickness: 2px;
+        }
+
+        .cat-container {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .cat-meme {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            border: 3px solid #333;
+            border-radius: 4px;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+            transform: rotate(2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .cat-meme:hover {
+            transform: rotate(-2deg) scale(1.02);
+        }
+
+        .polaroid-text {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: #666;
+            margin-top: 10px;
+            transform: rotate(-1deg);
+        }
+
+        .question {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin: 35px 0 25px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .handwritten-note {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: #555;
+            text-align: center;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            position: relative;
+            min-height: 100px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            font-family: 'Comic Neue', cursive;
+            font-size: 22px;
+            font-weight: 700;
+            padding: 16px 38px;
+            border: 3px solid #333;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+            text-transform: lowercase;
+        }
+
+        button:active {
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+            transform: translate(3px, 3px);
+        }
+
+        .yes-btn {
+            background: #ff6b9d;
+            color: white;
+            transform: rotate(-2deg);
+        }
+
+        .yes-btn:hover {
+            background: #ff5588;
+            transform: rotate(-2deg) scale(1.05);
+        }
+
+        .no-btn {
+            background: #ffeaa7;
+            color: #333;
+            position: absolute;
+            transform: rotate(1deg);
+        }
+
+        .no-btn:hover {
+            background: #ffd93d;
+        }
+
+        .success-screen {
+            display: none;
+        }
+
+        .success-screen h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 48px;
+            color: #d63384;
+            margin-bottom: 20px;
+            text-align: center;
+            transform: rotate(-1deg);
+        }
+
+        .success-screen p {
+            font-size: 24px;
+            color: #333;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .celebration-cat {
+            width: 260px;
+            height: 260px;
+            margin: 25px auto;
+            border: 3px solid #333;
+            border-radius: 4px;
+            object-fit: cover;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+            display: block;
+            transform: rotate(-2deg);
+        }
+
+        .sticker {
+            position: absolute;
+            font-size: 32px;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .email-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #fff4e6;
+            border: 2px dashed #ff6b9d;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+            position: relative;
+        }
+
+        .cal-button {
+            display: inline-block;
+            background: #74b9ff;
+            color: white;
+            padding: 12px 28px;
+            margin-top: 15px;
+            border: 3px solid #333;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+            font-size: 16px;
+        }
+
+        .cal-button:active {
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+            transform: translate(2px, 2px);
+        }
+
+        /* Scribble effect */
+        .scribble {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .confetti-piece {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            animation: confetti-drop 4s linear forwards;
+        }
+
+        @keyframes confetti-drop {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .thinking {
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Random doodles -->
+    <div class="doodle-heart" style="top: 10%; left: 8%;">💕</div>
+    <div class="doodle-heart" style="top: 15%; right: 12%; animation-delay: 1s;">💖</div>
+    <div class="doodle-heart" style="bottom: 20%; left: 15%; animation-delay: 2s;">✨</div>
+    <div class="doodle-heart" style="bottom: 15%; right: 10%; animation-delay: 1.5s;">💝</div>
+    <div class="doodle-heart" style="top: 40%; left: 5%; animation-delay: 0.5s;">🌟</div>
+
+    <div class="container">
+        <div id="question-screen">
+            <div class="sticker" style="top: -15px; right: 20px;">🐈</div>
+            <div class="sticker" style="bottom: -10px; left: 25px; animation-delay: 1s;">💌</div>
+            
+            <h1>hey so um...</h1>
+            
+            <div class="cat-container">
+                <img src="./couplecar.jpg" alt="cat pic" class="cat-meme" id="catMeme">
+                <div class="polaroid-text">this could be us on valentine's day</div>
+            </div>
+            
+            <p class="question">
+                will you be my valentine? 🥺
+            </p>
+
+    
+            
+            <div class="buttons">
+                <button class="yes-btn" onclick="handleYes()">
+                    yes!! 💕
+                </button>
+                <button class="no-btn" id="noBtn" onclick="handleNo()">
+                    no sorry
+                </button>
+            </div>
+        </div>
+
+        <div id="success-screen" class="success-screen">
+            <h2>omg YES!! 🎉</h2>
+            <img src="./yippee-cat-kitty.gif" alt="happy cat" class="celebration-cat">
+            <p style="font-size: 20px; margin-top: 20px;">this is gonna be the best valentine's day ever 😭💕</p>
+            <p style="font-size: 18px; color: #666;">i'm so happy you said yes!</p>
+            <div class="email-box" id="emailStatus">
+                <span class="thinking">⏳ setting up our date...</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // UPDATE YOUR INFO HERE!!
+        const CONFIG = {
+            yourEmail: 'aadeshdborse@gmail.com',
+            herEmail: 'megquad24@gmail.com',
+            yourName: 'Aadesh',
+            herName: 'Megi'
+        };
+
+        // No button escapes from cursor
+        const noBtn = document.getElementById('noBtn');
+        
+        function moveAwayFromCursor(e) {
+            const rect = noBtn.getBoundingClientRect();
+            const btnX = rect.left + rect.width / 2;
+            const btnY = rect.top + rect.height / 2;
+            
+            const dx = e.clientX - btnX;
+            const dy = e.clientY - btnY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < 120) {
+                const angle = Math.atan2(dy, dx);
+                const escapeDistance = 180;
+                
+                let newX = btnX - Math.cos(angle) * escapeDistance - rect.width / 2;
+                let newY = btnY - Math.sin(angle) * escapeDistance - rect.height / 2;
+                
+                const bounds = document.querySelector('.buttons').getBoundingClientRect();
+                newX = Math.max(0, Math.min(newX, bounds.width - rect.width));
+                newY = Math.max(0, Math.min(newY, bounds.height - rect.height));
+                
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+            }
+        }
+
+        document.addEventListener('mousemove', moveAwayFromCursor);
+
+        function handleNo() {
+            window.location.href = './sadcar';
+        }
+
+        function handleYes() {
+            document.getElementById('question-screen').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'block';
+            
+            throwConfetti();
+            setupCalendar();
+        }
+
+        function throwConfetti() {
+            const colors = ['#ff6b9d', '#74b9ff', '#ffeaa7', '#fd79a8', '#a29bfe', '#fd79a8'];
+            const shapes = ['○', '□', '△', '♥', '★'];
+            
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const piece = document.createElement('div');
+                    piece.className = 'confetti-piece';
+                    piece.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+                    piece.style.left = Math.random() * 100 + '%';
+                    piece.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.fontSize = (Math.random() * 12 + 10) + 'px';
+                    piece.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(piece);
+                    
+                    setTimeout(() => piece.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        function setupCalendar() {
+            const statusDiv = document.getElementById('emailStatus');
+            
+            setTimeout(() => {
+                const eventDate = new Date('2026-02-14T19:00:00');
+                const endDate = new Date(eventDate.getTime() + 3 * 60 * 60 * 1000);
+                
+                const startStr = eventDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                const endStr = endDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                
+                const calUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("💕 valentine's date 💕")}&details=${encodeURIComponent("our valentine's day together! can't wait 🥰")}&dates=${startStr}/${endStr}&add=${encodeURIComponent(CONFIG.yourEmail)},${encodeURIComponent(CONFIG.herEmail)}`;
+                
+                statusDiv.innerHTML = `
+                    <div style="text-align: center;">
+                        <p style="margin-bottom: 15px;">✨ saved the date for us!</p>
+                        <a href="${calUrl}" target="_blank" class="cal-button">
+                            📅 add to calendar
+                        </a>
+                    </div>
+                `;
+            }, 1800);
+        }
+
+        // Different cat pics
+        const cats = [
+            'https://i.imgur.com/QsZQBuO.jpg',
+            'https://i.imgur.com/Px0fNlr.jpg',
+            'https://i.imgur.com/bDnPcxV.jpg'
+        ];
+        let catIndex = 0;
+        
+        setInterval(() => {
+            if (document.getElementById('question-screen').style.display !== 'none') {
+                catIndex = (catIndex + 1) % cats.length;
+                document.getElementById('catMeme').src = cats[catIndex];
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
