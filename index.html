@@ -339,6 +339,10 @@
             <button class="yes-btn" onclick="goBack()" style="margin-top: 25px;">
                 ← go back
             </button>
+            <!-- Happy music -->
+            <audio id="happyMusic" loop>
+                <source src="./happy-music.mp3" type="audio/mpeg">
+            </audio>
         </div>
     </div>
 
@@ -383,18 +387,92 @@
         document.addEventListener('mousemove', moveAwayFromCursor);
 
         function handleNo() {
-            window.location.href = './sadcar.gif';
+            // Create sad cat page with music
+            document.body.innerHTML = `
+                <style>
+                    body {
+                        margin: 0;
+                        padding: 0;
+                        background: #1a1a1a;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                        font-family: 'Comic Neue', cursive;
+                    }
+                    .sad-container {
+                        text-align: center;
+                        padding: 20px;
+                    }
+                    .sad-cat {
+                        max-width: 500px;
+                        width: 90%;
+                        border: 3px solid #333;
+                        border-radius: 8px;
+                        box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+                    }
+                    .sad-text {
+                        font-family: 'Caveat', cursive;
+                        font-size: 48px;
+                        color: #999;
+                        margin: 30px 0;
+                    }
+                    .back-btn {
+                        font-family: 'Comic Neue', cursive;
+                        font-size: 20px;
+                        font-weight: 700;
+                        padding: 15px 35px;
+                        background: #ff6b9d;
+                        color: white;
+                        border: 3px solid #333;
+                        cursor: pointer;
+                        box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+                        margin-top: 20px;
+                        transform: rotate(-1deg);
+                    }
+                    .back-btn:hover {
+                        background: #ff5588;
+                        transform: rotate(-1deg) scale(1.05);
+                    }
+                    .back-btn:active {
+                        box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+                        transform: translate(3px, 3px) rotate(-1deg);
+                    }
+                </style>
+                <div class="sad-container">
+                    <div class="sad-text">oh... okay then 😿</div>
+                    <img src="./sadcar.gif" alt="sad cat" class="sad-cat">
+                    <div style="margin-top: 30px;">
+                        <button class="back-btn" onclick="location.reload()">
+                            ← maybe reconsider?
+                        </button>
+                    </div>
+                </div>
+                <audio id="sadMusic" autoplay loop>
+                    <source src="./sad-music.mp3" type="audio/mpeg">
+                </audio>
+            `;
         }
 
         function handleYes() {
             document.getElementById('question-screen').style.display = 'none';
             document.getElementById('success-screen').style.display = 'block';
             
+            // Play happy music
+            const happyMusic = document.getElementById('happyMusic');
+            happyMusic.play().catch(e => console.log('Music autoplay blocked:', e));
+            
             throwConfetti();
             setupCalendar();
         }
 
         function goBack() {
+            // Stop happy music
+            const happyMusic = document.getElementById('happyMusic');
+            happyMusic.pause();
+            happyMusic.currentTime = 0;
+            
             document.getElementById('success-screen').style.display = 'none';
             document.getElementById('question-screen').style.display = 'block';
             
